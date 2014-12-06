@@ -6,6 +6,7 @@ class TestJudgment(TestCase):
     def test_make(self):
         c = Judgment(Concept("subject"), Concept("predicate"))
         self.assertTrue(isinstance(c, Judgment))
+        self.assertTrue(c.predicate.name == "predicate")
 
     def test_straight_line(self):
         """pp145"""
