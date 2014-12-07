@@ -37,7 +37,7 @@ class Judgment(object):
         return not self.is_synthetic()
 
     def is_synthetic(self):
-        return self.subject.contains(self.predicate)
+        return not self.subject.contains(self.predicate)
 
 
 
