@@ -11,6 +11,11 @@ class Concept(object):
         self._analytic_facets = None
         self.analytic_facets = facets
 
+    def __eq__(self, other):
+        if not isinstance(other, Concept):
+            return False
+        return self.name == other.name
+
     @property
     def name(self):
         return self._name
@@ -24,9 +29,10 @@ class Concept(object):
         del self._name
 
     def contains(self, predicate):
-        if not self.analytic_facets:
-            return False
-        for concept in self.analytic_facets:
-            if predicate.equals(concept):
-                return True
+        if self == predicate:
+            return True
+        if self.analytic_facets:
+            for concept in self.analytic_facets:
+                if concept.contains(predicate):
+                    return True
         return False
