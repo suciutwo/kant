@@ -47,18 +47,5 @@ class Judgment(object):
     def is_synthetic(self):
         return not self.subject.contains(self.predicate)
 
-
     def is_pure(self):
-        if _subconcepts_are_pure(self.subject):
-            if _subconcepts_are_pure(self.predicate):
-                return True
-        return False
-
-    def is_apriori(self):
-        """pp136"""
-        return
-
-    def is_empirical(self):
-        """pp136"""
-        return not self.is_apriori()
-
+        return self.subject.is_pure() and self.predicate.is_pure()

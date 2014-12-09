@@ -37,3 +37,12 @@ class Concept(object):
                 if concept.contains(predicate):
                     return True
         return False
+
+    def is_pure(self):
+        if self.is_from_experience:
+            return False
+        if self.analytic_facets:
+            for concept in self.analytic_facets:
+                if not concept.is_pure():
+                    return False
+        return True
