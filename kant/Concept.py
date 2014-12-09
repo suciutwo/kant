@@ -1,6 +1,6 @@
 class Concept(object):
 
-    def __init__(self, name, facets=None):
+    def __init__(self, name, is_from_experience, facets=None):
         """
         :param name: String
         :param facets: [Concept]
@@ -10,6 +10,7 @@ class Concept(object):
         self.name = name
         self._analytic_facets = None
         self.analytic_facets = facets
+        self.is_from_experience = is_from_experience
 
     def __eq__(self, other):
         if not isinstance(other, Concept):

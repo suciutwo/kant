@@ -1,5 +1,13 @@
 from concept import Concept
 
+def _subconcepts_are_pure(concept):
+    if not concept.is_from_experience:
+        return False
+    for subconcept in concept.analytic_facets:
+        if not _subconcepts_are_pure(subconcept):
+            return False
+    return True
+
 
 class Judgment(object):
 
@@ -40,4 +48,17 @@ class Judgment(object):
         return not self.subject.contains(self.predicate)
 
 
+    def is_pure(self):
+        if _subconcepts_are_pure(self.subject):
+            if _subconcepts_are_pure(self.predicate):
+                return True
+        return False
+
+    def is_apriori(self):
+        """pp136"""
+        return
+
+    def is_empirical(self):
+        """pp136"""
+        return not self.is_apriori()
 
