@@ -35,3 +35,11 @@ class TestJudgment(TestCase):
         self.assertTrue(matter.contains(Concept("presence", True)))
         self.assertTrue(all_matter_is_conserved.is_synthetic())
 
+
+    def test_purity(self):
+        c = Concept("one", False)
+        c2 = Concept("two", False)
+        j = Judgment(c, c2)
+        self.assertTrue(j.is_pure())
+        c.analytic_facets = [Concept("three", True)]
+        self.assertFalse(j.is_pure())
